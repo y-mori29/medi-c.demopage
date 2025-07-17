@@ -6,6 +6,7 @@
     <title>製薬企業・ヘルスケア企業向け｜患者の声データ活用サービス｜株式会社メディキャンバス</title>
     <meta name="description" content="株式会社メディキャンバスでは、患者さんの体験談をもとにしたレポート作成や市場調査サービスを提供。ペイシェントジャーニーを通じた患者視点のデータ分析で、製薬・ヘルスケア企業のマーケティング・新規事業に貢献します。">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -445,7 +446,7 @@
                             <p><strong class="text-gray-800">初期症状と診断の遅れ：</strong>「朝、手がこわばり握れない。でも病院では『腱鞘炎』と診断され1年...。自分で調べてリウマチ検査を依頼し、ようやく確定診断に至りました。」</p>
                             <p><strong class="text-gray-800">見えない障害との闘い：</strong>「見た目は健康なので、電車の優先席に座りにくい。つり革も持てず、問診票を書くのも辛い。この『伝わらない苦しさ』が心の負担です。」</p>
                         </div>
-                        <a href="#contact" class="mt-6 inline-block text-blue-600 font-bold hover:underline">サンプルレポートを請求する →</a>
+                        <a href="#contact" class="mt-6 inline-block text-blue-600 font-bold hover:underline">資料請求・問い合わせ →</a>
                     </div>
                     <div class="bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow fade-in border border-gray-200">
                         <h3 class="text-2xl font-bold text-blue-900">多発性骨髄腫</h3>
@@ -454,11 +455,54 @@
                             <p><strong class="text-gray-800">漠然とした初期症状：</strong>「体のだるさ、貧血、口内炎...。原因が分からず不安な日々でした。診断が出て、やっと治療に専念できると安堵しました。」</p>
                              <p><strong class="text-gray-800">経済的・精神的な不安：</strong>「薬の効果は実感していますが、いつまで続くか分からない治療と高額な薬代に、常に経済的な不安がつきまといます。」</p>
                         </div>
-                         <a href="#contact" class="mt-6 inline-block text-blue-600 font-bold hover:underline">サンプルレポートを請求する →</a>
+                         <a href="#contact" class="mt-6 inline-block text-blue-600 font-bold hover:underline">資料請求・問い合わせ →</a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Report Slider Section -->
+    <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6 max-w-screen-lg">
+        <div class="section-title-wrapper">
+            <h2 class="section-title">レポートのイメージ</h2>
+            <p class="section-subtitle">実際のレポートの構成・雰囲気がわかるスライド形式</p>
+        </div>
+    <div x-data="{ currentSlide: 0 }" class="relative">
+        <!-- スライド画像一覧 -->
+      <div class="overflow-hidden rounded-xl shadow-lg border border-gray-200">
+        <div class="flex transition-transform duration-500 ease-in-out" :style="'transform: translateX(-' + currentSlide * 100 + '%)'">
+         <!-- 画像14枚をループで表示 -->
+          <template x-for="i in 14" :key="i">
+            <img :src="'/images/sample'+i+'.png'" alt="サンプルレポート" class="w-full flex-shrink-0">
+          </template>
+        </div>
+      </div>
+
+      <!-- ナビゲーション -->
+      <div class="flex justify-center mt-6 space-x-2">
+        <template x-for="i in 14" :key="i">
+          <button @click="currentSlide = i - 1"
+            :class="{'bg-blue-600': currentSlide === i - 1, 'bg-gray-400': currentSlide !== i - 1}"
+            class="w-3 h-3 rounded-full transition-colors duration-300"></button>
+        </template>
+      </div>
+
+      <!-- 左右ボタン -->
+      <button @click="currentSlide = (currentSlide - 1 + 14) % 14"
+        class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white border rounded-full p-2 shadow hover:bg-blue-50">
+        ‹
+      </button>
+      <button @click="currentSlide = (currentSlide + 1) % 14"
+        class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white border rounded-full p-2 shadow hover:bg-blue-50">
+        ›
+          </button>
+      </div>
+     </div>
+    </section>
+
+
+
 
         <!-- Process -->
         <section id="process" class="py-16 md:py-24 bg-gray-50">
